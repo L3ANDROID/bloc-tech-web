@@ -24,7 +24,7 @@ const Contact = () => {
     return (
         <div>
             <Container maxWidth="lg">
-                <h1>hola</h1>
+                <h1>Hola, area de prueba en el entorno de desarrollo</h1>
             </Container>
         </div>
     )
