@@ -8,8 +8,22 @@ export const login = async (body) => {
     try{
         const response = await fetch(`${URL}/login`, METHODS.POST(body));
         const data = await response.json();
+        if(data.data.token){
+            sessionStorage.setItem("token",data.data.token)
+        }else{ return false }
         return data;
     }catch(e){
-        return e.message;
+        console.log(e);
+    }
+}
+
+export const signin = async (body) => {
+    try{
+        const response = await fetch(`${URL}/signup`, METHODS.POST(body));
+        const data = await response.json();
+        // sessionStorage.setItem("token", data.data.token)
+        return data;
+    }catch(e){
+        return false;
     }
 }

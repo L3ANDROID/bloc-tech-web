@@ -3,14 +3,36 @@ import * as METHODS from "../methods"
 
 const URL = `${BASE_URL}/user`;
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBlcGl0b0BnbWFpbC5jb20iLCJwYXNzd29yZCI6InBlcGl0bzEyMzQ1NiIsImlhdCI6MTYzMTExMzE1OX0.zrpVB7vfQdCQomGCL4zCVd2Ihbo9epD6kXahETLysMM"
 
 export const list = async () => {
-    try{
-        const response = await fetch(`${URL}/users`, METHODS.GET(token));
+        if (sessionStorage.getItem("token")) {
+            const token = sessionStorage.getItem("token")
+            const response = await fetch(`${URL}/users`, METHODS.GET(token));
+            const data = await response.json();
+            return data;
+        } else {
+            return false
+        }
+}
+
+export const edit = async (body,id) => {
+    if (sessionStorage.getItem("token")) {
+        const token = sessionStorage.getItem("token")
+        const response = await fetch(`${URL}/update/${id}`, METHODS.PUT(body,token));
         const data = await response.json();
         return data;
-    }catch(e){
-        return e.message;
+    } else {
+        return false
+    }
+}
+
+export const remove = async (id) => {
+    if (sessionStorage.getItem("token")) {
+        const token = sessionStorage.getItem("token")
+        const response = await fetch(`${URL}/delete/${id}`, METHODS.DELETE(token));
+        const data = await response.json();
+        return data;
+    } else {
+        return false
     }
 }

@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Loader } from "../components";
 import { Drawer, MainAppBar } from "../layouts";
 
 const routes = [
@@ -24,16 +25,16 @@ const Login = lazy(() => import("../views/Login"));
 const Router = () => {
     return (
         <BrowserRouter>
-          <Suspense fallback={<>Cargando... xD</>}></Suspense>
+          <Suspense fallback={<Loader />}></Suspense>
             <Routes>
                 <Route element={<Drawer />}>
                     <Route path="/" element={
-                        <Suspense fallback={<>Cargando... xD</>}>
+                        <Suspense fallback={<Loader />}>
                             <Home />
                         </Suspense>
                     } />
                     <Route path="/contact" element={
-                        <Suspense fallback={<>Cargando... xD</>}>
+                        <Suspense fallback={<Loader />}>
                             <Contact />
                         </Suspense>
                     } />
@@ -42,7 +43,7 @@ const Router = () => {
             <Routes>
                 <Route element={<MainAppBar />}>
                     <Route path="/login" element={
-                        <Suspense fallback={<>Cargando... xD</>}>
+                        <Suspense fallback={<Loader />}>
                             <Login />
                         </Suspense>
                     } />

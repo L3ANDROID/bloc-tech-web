@@ -18,3 +18,24 @@ export const POST = (body,token) => {
         body: JSON.stringify(body)
     };
 };
+
+export const PUT = (body,token) => {
+    return {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(body)
+    };
+};
+
+export const DELETE = (token) => {
+    return {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        }
+    };
+};
